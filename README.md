@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kiwi Defence — Hands-On Cybersecurity Certification Platform
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+cp .env.example .env.local   # edit with your credentials
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### GitHub Pages (static — no API routes)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Push to `master` — the GitHub Actions workflow at `.github/workflows/deploy-pages.yml` builds a static export and deploys to Pages.
 
-## Learn More
+**Limitations on static export:** API routes (`/api/auth/*`), the proxy (middleware), and server-side auth validation do not run. The site will render but login/auth won't function.
 
-To learn more about Next.js, take a look at the following resources:
+### Server (full functionality)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For a VPS, Vercel, or any Node.js host:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+npm start
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Requires `AUTH_EMAIL`, `AUTH_PASSWORD`, `AUTH_NAME`, and `AUTH_SECRET` env vars.
