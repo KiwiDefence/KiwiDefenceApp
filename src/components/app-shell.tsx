@@ -32,7 +32,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       <Sidebar collapsed={!sidebarOpen} currentPath={pathname} onCloseMobile={() => setSidebarOpen(false)} />
       <Header onToggleSidebar={() => setSidebarOpen((v) => !v)} sidebarOpen={sidebarOpen} isMobile={isMobile} />
       <div className={`transition-all duration-300 ease-in-out pt-16 min-h-screen ${isMobile ? "ml-0" : sidebarOpen ? "ml-56" : "ml-20"}`}>
-        <main className="p-4 sm:p-6 pb-28 overflow-auto">
+        <main className="p-4 sm:p-6 pb-36 overflow-auto">
           {children}
         </main>
       </div>

@@ -95,7 +95,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Panel */}
-      <div className="grid place-items-center px-8 bg-[#050505]">
+      <div className="grid place-items-start px-8 py-8 bg-[#050505] overflow-y-auto">
         <div className="w-full max-w-md">
           <div className="flex items-center justify-center mb-2">
             <div className="w-12 h-12 flex items-center justify-center">
