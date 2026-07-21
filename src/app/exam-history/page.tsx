@@ -131,7 +131,7 @@ export default function ExamHistoryPage() {
     <AppShell>
       <h1 className="text-2xl font-bold text-white mb-6 font-code">Exam History</h1>
 
-      <div className="bg-[#0a0a0a] rounded-xl border border-neutral-800 overflow-hidden">
+      <div className="bg-[#0a0a0a] rounded-xl border border-neutral-800 overflow-x-auto">
         <table className="w-full text-sm font-code">
           <thead>
             <tr className="border-b border-neutral-800 bg-neutral-900">

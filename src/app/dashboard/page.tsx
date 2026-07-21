@@ -193,12 +193,12 @@ export default function DashboardPage() {
               <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
               <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-white rounded-full blur-2xl translate-y-1/2" />
             </div>
-            <div className="relative flex items-center justify-between px-10 py-12 overflow-hidden">
+            <div className="relative flex items-center justify-between px-6 sm:px-10 py-8 sm:py-12 overflow-hidden">
               <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E")`, backgroundSize: '128px 128px', opacity: 0.2 }} />
               <div className="max-w-lg">
-                <h1 className="text-4xl font-extrabold text-white mb-3 tracking-tight font-code">Prove your skills</h1>
-                <p className="text-neutral-400 text-lg mb-1 font-code">Skip the training. Take the exam.</p>
-                <p className="text-neutral-400 text-lg mb-6 font-code">Show what you can do.</p>
+                <h1 className="text-2xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight font-code">Prove your skills</h1>
+                <p className="text-neutral-400 text-base sm:text-lg mb-1 font-code">Skip the training. Take the exam.</p>
+                <p className="text-neutral-400 text-base sm:text-lg mb-6 font-code">Show what you can do.</p>
                 <Link
                   href="/certificates"
                   className="inline-flex items-center gap-2 bg-white text-black hover:bg-neutral-200 px-6 py-3 rounded-lg font-bold text-sm transition-colors font-code tracking-tight"

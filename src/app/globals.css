@@ -16,7 +16,7 @@
 }
 
 body {
-  background: var(--color-surface-muted);
+  background: #000;
   color: var(--foreground);
   font-family: var(--font-code);
 }

@@ -3,13 +3,13 @@
 import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
 
-export default function Header({ onToggleSidebar, sidebarOpen }: { onToggleSidebar: () => void; sidebarOpen: boolean }) {
+export default function Header({ onToggleSidebar, sidebarOpen, isMobile }: { onToggleSidebar: () => void; sidebarOpen: boolean; isMobile?: boolean }) {
   const { user, loading, logout } = useAuth()
 
   return (
-    <header className={`fixed top-0 z-30 h-16 bg-[#050505] border-b border-neutral-800 flex items-center justify-between px-6 transition-all duration-300 ease-in-out ${sidebarOpen ? "left-56" : "left-20"} right-0`}>
+    <header className={`fixed top-0 z-30 h-16 bg-[#050505] border-b border-neutral-800 flex items-center justify-between px-4 sm:px-6 transition-all duration-300 ease-in-out right-0 ${isMobile ? "left-0" : sidebarOpen ? "left-56" : "left-20"}`}>
       <div>
-        <button className="p-2 rounded-lg hover:bg-neutral-800 transition-colors cursor-pointer" title={sidebarOpen ? "Close menu" : "Open menu"} onClick={onToggleSidebar}>
+        <button className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-neutral-800 transition-colors cursor-pointer" title={sidebarOpen ? "Close menu" : "Open menu"} onClick={onToggleSidebar}>
           {sidebarOpen ? (
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-neutral-500" aria-hidden="true">
               <rect width="18" height="18" x="3" y="3" rx="2" />
@@ -25,9 +25,9 @@ export default function Header({ onToggleSidebar, sidebarOpen }: { onToggleSideb
           )}
         </button>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         {loading ? null : user ? (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div className="flex items-center gap-2 text-sm text-neutral-400 font-code">
               <div className="w-7 h-7 rounded-full bg-neutral-700 flex items-center justify-center text-white text-xs font-bold">
                 {user.name.charAt(0).toUpperCase()}
@@ -39,23 +39,23 @@ export default function Header({ onToggleSidebar, sidebarOpen }: { onToggleSideb
             </button>
           </div>
         ) : (
-          <div className="flex items-center gap-2">
-            <Link href="/login" className="flex items-center gap-1.5 px-3 py-2 text-sm font-code text-neutral-400 hover:text-white transition-colors">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Link href="/login" className="flex items-center gap-1.5 px-2 sm:px-3 py-2 text-sm font-code text-neutral-400 hover:text-white transition-colors min-h-[44px]">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                 <path d="m10 17 5-5-5-5" />
                 <path d="M15 12H3" />
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
               </svg>
-              Sign In
+              <span className="hidden sm:inline">Sign In</span>
             </Link>
-            <Link href="/register" className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold font-code text-black bg-white hover:bg-neutral-200 rounded-lg transition-colors">
+            <Link href="/register" className="flex items-center gap-1.5 px-2 sm:px-3 py-2 text-sm font-semibold font-code text-black bg-white hover:bg-neutral-200 rounded-lg transition-colors min-h-[44px]">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <line x1="19" x2="19" y1="8" y2="14" />
                 <line x1="22" x2="16" y1="11" y2="11" />
               </svg>
-              Register
+              <span className="hidden sm:inline">Register</span>
             </Link>
           </div>
         )}

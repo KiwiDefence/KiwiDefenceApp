@@ -102,7 +102,7 @@ function NavLink({ href, icon, label, active, collapsed }: { href: string; icon:
   return (
     <Link
       href={href}
-      className={`flex items-center rounded-lg text-sm font-code transition-colors ${collapsed ? "justify-center gap-0" : "gap-3 px-3"} py-2.5 ${
+      className={`flex items-center rounded-lg text-sm font-code transition-colors min-h-[44px] ${collapsed ? "justify-center gap-0" : "gap-3 px-3"} py-2.5 ${
         active ? "bg-neutral-800 text-white" : "text-neutral-400 hover:bg-neutral-800/50 hover:text-white"
       }`}
       title={collapsed ? label : undefined}
@@ -113,66 +113,72 @@ function NavLink({ href, icon, label, active, collapsed }: { href: string; icon:
   )
 }
 
-export default function Sidebar({ collapsed, currentPath = "" }: { collapsed?: boolean; currentPath?: string }) {
+export default function Sidebar({ collapsed, currentPath = "", onCloseMobile }: { collapsed?: boolean; currentPath?: string; onCloseMobile?: () => void }) {
   const { user, loading, logout } = useAuth()
 
   return (
-    <aside className={`fixed left-0 top-0 h-screen z-40 bg-black flex flex-col transition-all duration-300 ease-in-out overflow-hidden border-r border-neutral-800 ${collapsed ? "w-20" : "w-56"}`}>
-      <div className={`py-5 flex items-center ${collapsed ? "justify-center px-0" : "px-4"}`}>
-        <div className={`flex items-center gap-2 ${collapsed ? "justify-center" : ""}`}>
-          <div className="w-7 h-7 flex items-center justify-center">
-            <img alt="Kiwi Defence" className="w-full h-full invert" src="/kiwi-logo.svg" />
-          </div>
-          {!collapsed && <span className="text-white font-bold tracking-tight text-sm font-display">Kiwi Defence</span>}
-        </div>
-      </div>
-      <nav className="flex-1 py-2 space-y-1 px-3">
-        {navItems.map((item) => (
-          <NavLink key={item.href} {...item} active={currentPath.startsWith(item.href)} collapsed={!!collapsed} />
-        ))}
-        <div className="mx-3 my-3 border-t border-neutral-800" />
-        <p className={`px-4 mb-1 text-[10px] font-bold text-neutral-600 uppercase tracking-wider font-code ${collapsed ? "hidden" : ""}`}>Explore</p>
-        {exploreItems.map((item) => (
-          <NavLink key={item.href} {...item} collapsed={!!collapsed} />
-        ))}
-      </nav>
-      <div className="py-4 space-y-2 px-3">
-        <div className="mx-1 mb-2 border-t border-neutral-800" />
-        {loading ? null : user ? (
-          <div className={`flex items-center gap-3 px-3 py-2.5 ${collapsed ? "justify-center" : ""}`}>
-            <div className="w-7 h-7 rounded-full bg-neutral-700 flex items-center justify-center text-white text-xs font-bold shrink-0 font-code">
-              {user.name.charAt(0).toUpperCase()}
+    <>
+      {!collapsed && (
+        <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={onCloseMobile} />
+      )}
+      <aside className={`fixed left-0 top-0 h-screen z-40 bg-black flex flex-col transition-all duration-300 ease-in-out overflow-hidden border-r border-neutral-800
+        ${collapsed ? "-translate-x-full" : "translate-x-0"} lg:translate-x-0 lg:${collapsed ? "w-20" : "w-56"}`}>
+        <div className={`py-5 flex items-center ${collapsed ? "justify-center px-0" : "px-4"}`}>
+          <div className={`flex items-center gap-2 ${collapsed ? "justify-center" : ""}`}>
+            <div className="w-7 h-7 flex items-center justify-center">
+              <img alt="Kiwi Defence" className="w-full h-full invert" src="/kiwi-logo.svg" />
             </div>
-            {!collapsed && (
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-white truncate font-code">{user.name}</p>
-                <button onClick={logout} className="text-[10px] text-neutral-500 hover:text-neutral-300 transition-colors mt-0.5 font-code">
-                  Sign Out
-                </button>
-              </div>
-            )}
+            {!collapsed && <span className="text-white font-bold tracking-tight text-sm font-display">Kiwi Defence</span>}
           </div>
-        ) : (
-          <>
-            <Link
-              href="/login"
-              className={`flex items-center rounded-lg text-sm font-code transition-colors border border-neutral-700 text-neutral-300 hover:border-neutral-500 hover:text-white ${collapsed ? "justify-center gap-0" : "gap-3 px-3"} py-2.5`}
-              title={collapsed ? "Sign In" : undefined}
-            >
-              <Icon name="log-in" />
-              {!collapsed && <span className="whitespace-nowrap overflow-hidden">Sign In</span>}
-            </Link>
-            <Link
-              href="/register"
-              className={`flex items-center rounded-lg text-sm font-semibold font-code transition-colors bg-white text-black hover:bg-neutral-200 ${collapsed ? "justify-center gap-0" : "gap-3 px-3"} py-2.5`}
-              title={collapsed ? "Register" : undefined}
-            >
-              <Icon name="user-plus" />
-              {!collapsed && <span className="whitespace-nowrap overflow-hidden">Register</span>}
-            </Link>
-          </>
-        )}
-      </div>
-    </aside>
+        </div>
+        <nav className="flex-1 py-2 space-y-1 px-3">
+          {navItems.map((item) => (
+            <NavLink key={item.href} {...item} active={currentPath.startsWith(item.href)} collapsed={!!collapsed} />
+          ))}
+          <div className="mx-3 my-3 border-t border-neutral-800" />
+          <p className={`px-4 mb-1 text-[10px] font-bold text-neutral-600 uppercase tracking-wider font-code ${collapsed ? "hidden" : ""}`}>Explore</p>
+          {exploreItems.map((item) => (
+            <NavLink key={item.href} {...item} collapsed={!!collapsed} />
+          ))}
+        </nav>
+        <div className="py-4 space-y-2 px-3">
+          <div className="mx-1 mb-2 border-t border-neutral-800" />
+          {loading ? null : user ? (
+            <div className={`flex items-center gap-3 px-3 py-2.5 ${collapsed ? "justify-center" : ""}`}>
+              <div className="w-7 h-7 rounded-full bg-neutral-700 flex items-center justify-center text-white text-xs font-bold shrink-0 font-code">
+                {user.name.charAt(0).toUpperCase()}
+              </div>
+              {!collapsed && (
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-white truncate font-code">{user.name}</p>
+                  <button onClick={logout} className="text-[10px] text-neutral-500 hover:text-neutral-300 transition-colors mt-0.5 font-code">
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className={`flex items-center rounded-lg text-sm font-code transition-colors border border-neutral-700 text-neutral-300 hover:border-neutral-500 hover:text-white min-h-[44px] ${collapsed ? "justify-center gap-0" : "gap-3 px-3"} py-2.5`}
+                title={collapsed ? "Sign In" : undefined}
+              >
+                <Icon name="log-in" />
+                {!collapsed && <span className="whitespace-nowrap overflow-hidden">Sign In</span>}
+              </Link>
+              <Link
+                href="/register"
+                className={`flex items-center rounded-lg text-sm font-semibold font-code transition-colors bg-white text-black hover:bg-neutral-200 min-h-[44px] ${collapsed ? "justify-center gap-0" : "gap-3 px-3"} py-2.5`}
+                title={collapsed ? "Register" : undefined}
+              >
+                <Icon name="user-plus" />
+                {!collapsed && <span className="whitespace-nowrap overflow-hidden">Register</span>}
+              </Link>
+            </>
+          )}
+        </div>
+      </aside>
+    </>
   )
 }

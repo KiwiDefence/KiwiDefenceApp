@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type ReactNode } from "react"
+import { useState, useEffect, type ReactNode } from "react"
 import { usePathname } from "next/navigation"
 import Sidebar from "@/components/sidebar"
 import Header from "@/components/header"
@@ -8,18 +8,31 @@ import Footer from "@/components/footer"
 
 export default function AppShell({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)")
+    setIsMobile(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
+
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [pathname])
 
   return (
     <div className="min-h-screen bg-black">
-      <Sidebar collapsed={!sidebarOpen} currentPath={pathname} />
-      <Header onToggleSidebar={() => setSidebarOpen((v) => !v)} sidebarOpen={sidebarOpen} />
-      <div className={`transition-all duration-300 ease-in-out ${sidebarOpen ? "ml-56" : "ml-20"} pt-16 min-h-screen`}>
-        <main className="p-6 pb-20 overflow-auto">
+      <Sidebar collapsed={!sidebarOpen} currentPath={pathname} onCloseMobile={() => setSidebarOpen(false)} />
+      <Header onToggleSidebar={() => setSidebarOpen((v) => !v)} sidebarOpen={sidebarOpen} isMobile={isMobile} />
+      <div className={`transition-all duration-300 ease-in-out pt-16 min-h-screen ${isMobile ? "ml-0" : sidebarOpen ? "ml-56" : "ml-20"}`}>
+        <main className="p-4 sm:p-6 pb-20 overflow-auto">
           {children}
         </main>
       </div>
-      <Footer sidebarOpen={sidebarOpen} />
+      <Footer sidebarOpen={sidebarOpen} isMobile={isMobile} />
     </div>
   )
 }
