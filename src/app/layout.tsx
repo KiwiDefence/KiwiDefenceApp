@@ -19,10 +19,36 @@ const syncopate = Syncopate({
   variable: "--font-syncopate",
 })
 
+const siteUrl = "https://kiwidefence.com"
+
 export const metadata: Metadata = {
-  title: "Kiwi Defence — Hands-On Cybersecurity Certification Platform",
+  title: "Kiwi Defence | Cybersecurity",
   description:
-    "Prove your cybersecurity skills with hands-on lab-based certification exams. Earn industry-recognized credentials in penetration testing, digital forensics, cloud security, and more.",
+    "Kiwi Defence provides enterprise-grade cybersecurity solutions. Penetration testing, threat monitoring, incident response, and security consulting.",
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "Kiwi Defence | Cybersecurity",
+    description:
+      "Enterprise-grade cybersecurity solutions. Penetration testing, threat monitoring, incident response, and security consulting.",
+    url: siteUrl,
+    siteName: "Kiwi Defence",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kiwi Defence | Cybersecurity",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kiwi Defence | Cybersecurity",
+    description:
+      "Enterprise-grade cybersecurity solutions. Penetration testing, threat monitoring, incident response, and security consulting.",
+    images: ["/og-image.png"],
+  },
 }
 
 export default function RootLayout({
