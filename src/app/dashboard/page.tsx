@@ -139,13 +139,7 @@ const certifications = [
   },
 ]
 
-const partners = [
-  { name: "Sibereum", href: "https://sibereum.com", src: "/partners/sibereum.svg" },
-  { name: "Turk Telekom", href: "https://www.turktelekom.com.tr", src: "/partners/turk-telekom.svg" },
-  { name: "People Arts", href: "https://thepeoplearts.com", src: "/partners/people-arts.png" },
-  { name: "Turkish Technology", href: "https://turkishtechnology.com", src: "/partners/turkish-technology.svg" },
-  { name: "SwordSec", href: "https://swordsec.com", src: "/partners/swordsec.svg" },
-]
+
 
 function BenefitIcon({ name }: { name: string }) {
   const paths: Record<string, React.ReactNode> = {
@@ -251,32 +245,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Trusted By */}
-          <div className="bg-[#0a0a0a] rounded-2xl border border-neutral-800 px-6 py-10 md:px-10">
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-2 font-code">Trusted by</p>
-              <h2 className="text-xl md:text-2xl font-extrabold text-white tracking-tight font-code">Certifications employers recognize</h2>
-              <p className="mt-2 text-sm text-neutral-500 max-w-2xl mx-auto font-code">
-                Our hiring partners consider certificates earned on this platform when reviewing candidates.
-              </p>
-            </div>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-              {partners.map((p) => (
-                <a
-                  key={p.name}
-                  href={p.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center"
-                  title={p.name}
-                >
-                  <span className="text-sm font-semibold text-neutral-600 grayscale opacity-70 group-hover:grayscale-0 group-hover:text-neutral-300 transition-all duration-300 font-code">
-                    {p.name}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
+
 
           {/* Popular Certificate Exams */}
           <div>
