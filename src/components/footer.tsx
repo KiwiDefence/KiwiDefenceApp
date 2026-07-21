@@ -11,7 +11,7 @@ export default function Footer({ sidebarOpen, isMobile }: { sidebarOpen?: boolea
           <Link href="/terms" className="hover:text-neutral-300 transition-colors">Terms of Use</Link>
           <Link href="/privacy" className="hover:text-neutral-300 transition-colors">Privacy Policy</Link>
           <Link href="/refund-policy" className="hover:text-neutral-300 transition-colors">Refund Policy</Link>
-          <a href="mailto:info@kiwidefence.com" className="hover:text-neutral-300 transition-colors">Contact</a>
+          <a href="mailto:contact@kiwidefence.com" className="hover:text-neutral-300 transition-colors">Contact</a>
         </div>
       </div>
     </footer>

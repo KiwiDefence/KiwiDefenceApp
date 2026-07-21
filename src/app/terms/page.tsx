@@ -58,7 +58,7 @@ export default function TermsPage() {
 
         <section className="space-y-4 text-sm text-neutral-400 leading-relaxed font-code">
           <h2 className="text-lg font-semibold text-white">8. Contact</h2>
-          <p>For questions about these terms, contact us at <a href="mailto:info@kiwidefence.com" className="text-neutral-300 hover:text-white underline underline-offset-2">info@kiwidefence.com</a>.</p>
+          <p>For questions about these terms, contact us at <a href="mailto:contact@kiwidefence.com" className="text-neutral-300 hover:text-white underline underline-offset-2">contact@kiwidefence.com</a>.</p>
         </section>
       </article>
     </AppShell>

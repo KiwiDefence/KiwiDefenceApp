@@ -96,7 +96,7 @@ export default function LoginPage() {
 
       {/* Right Panel */}
       <div className="grid place-items-start px-8 py-8 bg-[#050505] overflow-y-auto">
-        <div className="w-full max-w-md">
+        <div className="w-full max-w-md pb-8">
           <div className="flex items-center justify-center mb-2">
             <div className="w-12 h-12 flex items-center justify-center">
               <img alt="Kiwi Defence" className="w-full h-full invert" src="/kiwi-logo.svg" />

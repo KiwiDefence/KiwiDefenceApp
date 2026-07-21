@@ -47,7 +47,7 @@ export default function RefundPolicyPage() {
 
         <section className="space-y-4 text-sm text-neutral-400 leading-relaxed font-code">
           <h2 className="text-lg font-semibold text-white">6. How to Request a Refund</h2>
-          <p>Send your refund request from the email address associated with your account to <a href="mailto:info@kiwidefence.com" className="text-neutral-300 hover:text-white underline underline-offset-2">info@kiwidefence.com</a>. Include your full name and order reference number. We will respond within 3 business days.</p>
+          <p>Send your refund request from the email address associated with your account to <a href="mailto:contact@kiwidefence.com" className="text-neutral-300 hover:text-white underline underline-offset-2">contact@kiwidefence.com</a>. Include your full name and order reference number. We will respond within 3 business days.</p>
         </section>
       </article>
     </AppShell>
