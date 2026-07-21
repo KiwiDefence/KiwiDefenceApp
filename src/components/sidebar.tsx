@@ -121,8 +121,7 @@ export default function Sidebar({ collapsed, currentPath = "", onCloseMobile }: 
       {!collapsed && (
         <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={onCloseMobile} />
       )}
-      <aside className={`fixed left-0 top-0 h-screen z-40 bg-black flex flex-col transition-all duration-300 ease-in-out overflow-hidden border-r border-neutral-800
-        ${collapsed ? "-translate-x-full" : "translate-x-0"} lg:translate-x-0 lg:${collapsed ? "w-20" : "w-56"}`}>
+      <aside className={`fixed left-0 top-0 h-screen z-40 bg-black flex flex-col transition-all duration-300 ease-in-out overflow-hidden border-r border-neutral-800 w-56 ${collapsed ? "max-lg:-translate-x-full lg:w-20" : "translate-x-0 lg:w-56"}`}>
         <div className={`py-5 flex items-center ${collapsed ? "justify-center px-0" : "px-4"}`}>
           <div className={`flex items-center gap-2 ${collapsed ? "justify-center" : ""}`}>
             <div className="w-7 h-7 flex items-center justify-center">
