@@ -1,15 +1,16 @@
 "use client"
 
-import { useState, useEffect, type ReactNode } from "react"
+import { useState, useEffect, useRef, type ReactNode } from "react"
 import { usePathname } from "next/navigation"
 import Sidebar from "@/components/sidebar"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
 export default function AppShell({ children }: { children: ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
+  const prevPath = useRef(pathname)
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 1023px)")
@@ -20,7 +21,10 @@ export default function AppShell({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    setSidebarOpen(false)
+    if (prevPath.current !== pathname) {
+      setSidebarOpen(false)
+    }
+    prevPath.current = pathname
   }, [pathname])
 
   return (
