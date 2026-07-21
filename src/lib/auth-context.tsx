@@ -23,6 +23,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "true") {
+      setLoading(false)
+      return
+    }
     fetch("/api/auth/me")
       .then((res) => {
         if (!res.ok) throw new Error("Not authenticated")
@@ -42,6 +46,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const login = useCallback(async (email: string, password: string) => {
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "true") {
+      return { success: false, message: "Login unavailable on static export" }
+    }
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -59,6 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const logout = useCallback(async () => {
+    if (process.env.NEXT_PUBLIC_STATIC_EXPORT === "true") return
     await fetch("/api/auth/logout", { method: "POST" })
     setUser(null)
     router.push("/login")

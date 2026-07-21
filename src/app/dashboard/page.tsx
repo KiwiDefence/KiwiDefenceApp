@@ -145,7 +145,6 @@ const partners = [
   { name: "People Arts", href: "https://thepeoplearts.com", src: "/partners/people-arts.png" },
   { name: "Turkish Technology", href: "https://turkishtechnology.com", src: "/partners/turkish-technology.svg" },
   { name: "SwordSec", href: "https://swordsec.com", src: "/partners/swordsec.svg" },
-  { name: "ProudSec", href: "https://proudsec.com", src: "/partners/proudsec.png" },
 ]
 
 function BenefitIcon({ name }: { name: string }) {

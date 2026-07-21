@@ -18,8 +18,6 @@ const isStaticExport = process.env.STATIC_EXPORT === "true"
 const nextConfig: NextConfig = {
   ...(isStaticExport ? {
     output: "export" as const,
-    basePath: "/KiwiDefenceApp",
-    assetPrefix: "/KiwiDefenceApp/",
     trailingSlash: true,
     images: { unoptimized: true },
   } : {}),
